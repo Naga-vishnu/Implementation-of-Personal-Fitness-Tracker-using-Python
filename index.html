@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/images/WhatsApp Image 2025-02-24 at 16.01.14_b172e334.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .timer-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Your Workouts</h2>
+        <a href="{{ url_for('add_workout') }}" class="btn btn-success mb-3">Add Workout</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-danger mb-3 float-end">Logout</a>
+
+        <div class="timer-box">
+            <div class="mb-3">
+                <label for="exercise" class="form-label">Choose Exercise:</label>
+                <select id="exercise" class="form-select">
+                    <option value="Running">Running</option>
+                    <option value="Cycling">Cycling</option>
+                    <option value="Swimming">Swimming</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Yoga">Yoga</option>
+                </select>
+            </div>
+            
+            <button id="startWorkout" class="btn btn-primary">Start Workout</button>
+            <button id="stopWorkout" class="btn btn-danger" disabled>Stop Workout</button>
+            <p class="mt-3">Workout Duration: <span id="workoutTimer">0</span> sec</p>
+        </div>
+
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Exercise</th>
+                    <th>Duration (min)</th>
+                    <th>Calories Burned</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="workoutTable">
+                {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout.date }}</td>
+                    <td>{{ workout.exercise }}</td>
+                    <td>{{ workout.duration }}</td>
+                    <td>{{ workout.calories_burned }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_workout', index=loop.index0) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pie Chart for Exercise Distribution -->
+    <div class="container mt-5 chart-container">
+        <h3 class="text-center">Exercise Distribution</h3>
+        <canvas id="exercisePieChart"></canvas>
+    </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fitness Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            background: url('{{ url_for("static", filename="images/photo-1483721310020-03333e577078.jpeg") }}') no-repeat center center/cover;
+            position: relative;
+            padding-left: 5%;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .login-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-left: 5%;
+        }
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            position: relative;
+            margin: 12px 0;
+        }
+        .input-container input {
+            width: 95%;
+            padding: 10px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .input-container i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+        }
+        .btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .btn:hover {
+            background: #d62839;
+        }
+        .register-link {
+            color: #f4f4f4;
+            text-decoration: none;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
+        .social-login {
+            margin-top: 20px;
+        }
+        .social-login button {
+            width: 100%;
+            background: white;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .social-login button i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="login-container">
+        <h2>Fitness Login Form</h2>
+        <form action="/login" method="POST">
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+        <div class="social-login">
+            <button><i class="fab fa-google"></i> Sign in with Google</button>
+            <button><i class="fab fa-facebook"></i> Sign in with Facebook</button>
+            <button><i class="fab fa-apple"></i> Sign in with Apple</button>
+        </div>
+        <a href="/register" class="register-link">Don't have an account? Register</a>
+    </div>
+</body>
+</html>

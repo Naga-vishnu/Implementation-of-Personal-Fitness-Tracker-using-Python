@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Report</title>
+</head>
+<body>
+    <h1>Activity Report for {{ activity['date'] }}</h1>
+    <p>Steps: {{ activity['steps'] }}</p>
+    <p>Calories: {{ activity['calories'] }}</p>
+    <p>Workout Duration: {{ activity['workout_duration'] }} minutes</p>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
